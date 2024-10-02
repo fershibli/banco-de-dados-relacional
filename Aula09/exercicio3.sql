@@ -49,7 +49,32 @@ insert into Funcionario values
 	(2, 'Maria', 'Pinheiros', 'mpinheiros@email.com', '(11) 98151-1251', '2024-04-10', 24350.00, 1),
 	(3, 'Felipe', 'Cervos', 'felpcervos@email.com', '(11) 91511-2416', '2003-06-05', 55000.00, 4),
 	(4, 'Miriam', 'Braga', 'bragagem@email.com', '(11) 98101-2924', '2019-03-12', 4332.55, 2),
-	(5, 'Roberto', 'da Silva', 'bobsilva@email.com', '(11) 97123-0124','2003-10-12', 1823.02, 5);
+	(5, 'Roberto', 'da Silva', 'bobsilva@email.com', '(11) 97123-0124','2003-10-12', 1823.02, 5),
+	(6, 'José'
 
--- item 6
+-- item 6a
 
+select COD_SETOR from Funcionario group by COD_SETOR;
+
+-- item 6b
+
+select 
+	concat(ULTIMO_NOME, ', ', COD_SETOR) as 'Empregado e Setor' 
+	from Funcionario;
+
+-- item 7
+
+select PRIMEIRO_NOME, ULTIMO_NOME, SALARIO from Funcionario
+	where SALARIO > 2500;
+
+-- item 8
+
+select PRIMEIRO_NOME, ULTIMO_NOME, COD_SETOR from Funcionario
+	where NRMATRICULA = 5;
+
+-- item 9
+
+select PRIMEIRO_NOME, ULTIMO_NOME, SALARIO from Funcionario
+	where SALARIO < 1500 or SALARIO > 3000;
+
+-- item 10
