@@ -45,11 +45,11 @@ insert into Setor values
 -- item 5
 
 insert into Funcionario values
-	(1, 'Jo�o', 'dos Santos', 'joaods@email.com', '(11) 91512-2765', '2023-09-09', 3267.45, 3),
+	(1, 'João', 'dos Santos', 'joaods@email.com', '(11) 91512-2765', '2023-09-09', 3267.45, 3),
 	(2, 'Maria', 'Pinheiros', 'mpinheiros@email.com', '(11) 98151-1251', '2024-04-10', 24350.00, 1),
 	(3, 'Felipe', 'Cervos', 'felpcervos@email.com', '(11) 91511-2416', '2003-06-05', 55000.00, 4),
 	(4, 'Miriam', 'Braga', 'bragagem@email.com', '(11) 98101-2924', '2019-03-12', 4332.55, 2),
-	(5, 'Roberto', 'da Silva', 'bobsilva@email.com', '(11) 97123-0124','2003-10-12', 1823.02, 5);
+	(5, 'Roberta', 'da Silva', 'robertasil@email.com', '(11) 97123-0124','2003-10-12', 1823.02, 5);
 
 -- item 6a
 
@@ -114,4 +114,3 @@ select PRIMEIRO_NOME, ULTIMO_NOME, COD_SETOR from Funcionario
 
 select PRIMEIRO_NOME, ULTIMO_NOME, SALARIO from Funcionario
 	where SALARIO > 2300 and COD_SETOR = 3;
-
