@@ -21,7 +21,7 @@ ORDER BY NOME;
 
 -- 6) Mostre a quantidade de clientes mulheres cadastradas no sistema.
 
-SELECT COUNT(*) FROM CLIENTES WHERE SEXO = 'F';
+SELECT COUNT(*) AS "QUANTIDADE_CLIENTES_F" FROM CLIENTES WHERE SEXO = 'F';
 
 -- 7) Mostre as categorias de filmes que a locadora possui mostrando o nome da categoria em ordem alfabética.
 
@@ -46,9 +46,9 @@ SELECT COUNT(*) AS "QUANTIDADE_FILMES" FROM FILME WHERE RESERVADA = 's';
 
 -- 12) Mostre o maior valor de Locação cadastrado.
 
-SELECT MAX(VALOR_LOCACAO) FROM FILME;
+SELECT MAX(VALOR_LOCACAO) AS "MAIOR_VALOR" FROM FILME;
 
--- 13) Mostre todos os filmes cuja categoria seja Ação (nome).
+-- 13) Mostre todos os filmes cuja categoria seja Ação.
 
 SELECT * FROM FILME F
 JOIN CATEGORIA C ON F.COD_CATEGORIA = C.COD_CATEGORIA
@@ -58,48 +58,49 @@ WHERE C.NOME_CATEGORIA = 'Ação';
 
 SELECT * FROM FILME F
 JOIN CATEGORIA C ON F.COD_CATEGORIA = C.COD_CATEGORIA
-WHERE C.NOME_CATEGORIA = 'Romance' OR C.NOME_CATEGORIA = 'Aventura' AND F.RESERVADA = 's' AND F.VALOR_LOCACAO < 5;
+WHERE (C.NOME_CATEGORIA = 'Romance' OR C.NOME_CATEGORIA = 'Aventura') AND F.RESERVADA = 's' AND F.VALOR_LOCACAO < 5;
 
 -- 15) Mostre todos os filmes alugados pelo cliente Renata Cristina.
 
-SELECT F.FILME FROM FILME F
+SELECT F.FILME, C.NOME FROM FILME F
 JOIN LOCACOES L ON F.COD_FILME = L.COD_FILME
 JOIN CLIENTES C ON L.COD_CLIENTE = C.COD_CLIENTE
 WHERE C.NOME = 'Renata Cristina';
 
 -- 16) Mostre todos os clientes que já alugaram mais do que 3 filmes.
 
-SELECT NOME
+SELECT NOME, TOTAL_LOCACOES
 FROM (
-    SELECT C.NOME, COUNT(L.COD_LOCACAO) AS total_locacoes
+    SELECT C.NOME, COUNT(L.COD_LOCACAO) AS TOTAL_LOCACOES
     FROM CLIENTES C
     JOIN LOCACOES L ON C.COD_CLIENTE = L.COD_CLIENTE
     GROUP BY C.NOME
 ) subconsulta
-WHERE total_locacoes > 3;
+WHERE TOTAL_LOCACOES > 3;
 
 -- OU usando HAVING
 
-SELECT C.NOME FROM CLIENTES C
+SELECT C.NOME, COUNT(L.COD_LOCACAO) AS TOTAL_LOCACOES FROM CLIENTES C
 JOIN LOCACOES L ON C.COD_CLIENTE = L.COD_CLIENTE
 GROUP BY C.NOME
 HAVING COUNT(L.COD_LOCACAO) > 3;
 
 -- 17) Mostre quanto foi gasto pelo cliente Renata Cristina.
 
-SELECT SUM(F.VALOR_LOCACAO) AS "VALOR_GASTO"
+SELECT SUM(F.VALOR_LOCACAO) AS "VALOR_GASTO", C.NOME
 FROM FILME F
 JOIN LOCACOES L ON F.COD_FILME = L.COD_FILME
 JOIN CLIENTES C ON L.COD_CLIENTE = C.COD_CLIENTE
-WHERE C.NOME = 'Renata Cristina';
+WHERE C.NOME = 'Renata Cristina'
+GROUP BY C.NOME;
 
 -- 18) Mostre a média de valor de locação da locadora.
 
-SELECT AVG(VALOR_LOCACAO) FROM FILME;
+SELECT AVG(VALOR_LOCACAO) AS "MEDIA_LOCACAO" FROM FILME;
 
 -- 19) Mostre o menor valor de locação da locadora.
 
-SELECT MIN(VALOR_LOCACAO) FROM FILME;
+SELECT MIN(VALOR_LOCACAO) AS "MENOR_VALOR" FROM FILME;
 
 -- 20) Mostre a quantidade de filme que a locadora possui por categoria.
 
