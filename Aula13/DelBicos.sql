@@ -1,6 +1,10 @@
+-- Criação do banco de dados DelBicos
+
 CREATE DATABASE DelBicos;
 
 USE DelBicos;
+
+-- Criando tabelas
 
 CREATE TABLE Usuario
 (
@@ -103,3 +107,68 @@ CREATE TABLE Chamado
     status CHAR(1) NOT NULL,
     CONSTRAINT fk_chamado_consulta FOREIGN KEY (id_consulta) REFERENCES Consulta(id_consulta)
 );
+
+-- Inserindo dados
+
+-- Inserção na tabela Usuario
+INSERT INTO Usuario (nome, email, telefone, senha) VALUES ('João Silva', 'joao.silva@example.com', '123456789', 'senha123');
+INSERT INTO Usuario (nome, email, telefone, senha) VALUES ('Maria Oliveira', 'maria.oliveira@example.com', '987654321', 'senha456');
+INSERT INTO Usuario (nome, email, telefone, senha) VALUES ('Carlos Souza', 'carlos.souza@example.com', '456789123', 'senha789');
+INSERT INTO Usuario (nome, email, telefone, senha) VALUES ('Ana Pereira', 'ana.pereira@example.com', '789123456', 'senha101');
+INSERT INTO Usuario (nome, email, telefone, senha) VALUES ('Paulo Lima', 'paulo.lima@example.com', '321654987', 'senha202');
+
+-- Inserção na tabela Cliente
+INSERT INTO Cliente (id_usuario, cep, logradouro, numero, complemento, cidade, estado, cpf) VALUES (1, '12345678', 'Rua A', '100', 'Apto 1', 'Cidade A', 'SP', '12345678901');
+INSERT INTO Cliente (id_usuario, cep, logradouro, numero, complemento, cidade, estado, cpf) VALUES (2, '23456789', 'Rua B', '200', 'Apto 2', 'Cidade B', 'RJ', '23456789012');
+INSERT INTO Cliente (id_usuario, cep, logradouro, numero, complemento, cidade, estado, cpf) VALUES (3, '34567890', 'Rua C', '300', 'Apto 3', 'Cidade C', 'MG', '34567890123');
+INSERT INTO Cliente (id_usuario, cep, logradouro, numero, complemento, cidade, estado, cpf) VALUES (4, '45678901', 'Rua D', '400', 'Apto 4', 'Cidade D', 'RS', '45678901234');
+INSERT INTO Cliente (id_usuario, cep, logradouro, numero, complemento, cidade, estado, cpf) VALUES (5, '56789012', 'Rua E', '500', 'Apto 5', 'Cidade E', 'BA', '56789012345');
+
+-- Inserção na tabela Parceiro
+INSERT INTO Parceiro (id_usuario, cnpj, cpf, cep, logradouro, numero, complemento, cidade, estado) VALUES (1, '12345678000101', '12345678901', '12345678', 'Rua F', '600', 'Sala 1', 'Cidade F', 'SP');
+INSERT INTO Parceiro (id_usuario, cnpj, cpf, cep, logradouro, numero, complemento, cidade, estado) VALUES (2, '23456789000102', '23456789012', '23456789', 'Rua G', '700', 'Sala 2', 'Cidade G', 'RJ');
+INSERT INTO Parceiro (id_usuario, cnpj, cpf, cep, logradouro, numero, complemento, cidade, estado) VALUES (3, '34567890000103', '34567890123', '34567890', 'Rua H', '800', 'Sala 3', 'Cidade H', 'MG');
+INSERT INTO Parceiro (id_usuario, cnpj, cpf, cep, logradouro, numero, complemento, cidade, estado) VALUES (4, '45678901000104', '45678901234', '45678901', 'Rua I', '900', 'Sala 4', 'Cidade I', 'RS');
+INSERT INTO Parceiro (id_usuario, cnpj, cpf, cep, logradouro, numero, complemento, cidade, estado) VALUES (5, '56789012000105', '56789012345', '56789012', 'Rua J', '1000', 'Sala 5', 'Cidade J', 'BA');
+
+-- Inserção na tabela Admin
+INSERT INTO Admin (id_usuario) VALUES (1);
+INSERT INTO Admin (id_usuario) VALUES (2);
+INSERT INTO Admin (id_usuario) VALUES (3);
+INSERT INTO Admin (id_usuario) VALUES (4);
+INSERT INTO Admin (id_usuario) VALUES (5);
+
+-- Inserção na tabela Categoria
+INSERT INTO Categoria (nome, descricao) VALUES ('Categoria 1', 'Descrição da Categoria 1');
+INSERT INTO Categoria (nome, descricao) VALUES ('Categoria 2', 'Descrição da Categoria 2');
+INSERT INTO Categoria (nome, descricao) VALUES ('Categoria 3', 'Descrição da Categoria 3');
+INSERT INTO Categoria (nome, descricao) VALUES ('Categoria 4', 'Descrição da Categoria 4');
+INSERT INTO Categoria (nome, descricao) VALUES ('Categoria 5', 'Descrição da Categoria 5');
+
+-- Inserção na tabela Especialidade
+INSERT INTO Especialidade (id_categoria, nome, minutos, valor, descricao) VALUES (1, 'Especialidade 1', 60, 100.0, 'Descrição da Especialidade 1');
+INSERT INTO Especialidade (id_categoria, nome, minutos, valor, descricao) VALUES (2, 'Especialidade 2', 90, 150.0, 'Descrição da Especialidade 2');
+INSERT INTO Especialidade (id_categoria, nome, minutos, valor, descricao) VALUES (3, 'Especialidade 3', 120, 200.0, 'Descrição da Especialidade 3');
+INSERT INTO Especialidade (id_categoria, nome, minutos, valor, descricao) VALUES (4, 'Especialidade 4', 30, 50.0, 'Descrição da Especialidade 4');
+INSERT INTO Especialidade (id_categoria, nome, minutos, valor, descricao) VALUES (5, 'Especialidade 5', 45, 75.0, 'Descrição da Especialidade 5');
+
+-- Inserção na tabela Agenda
+INSERT INTO Agenda (id_especialidade, id_parceiro, data, hora_inicio, hora_fim, descricao, status) VALUES (1, 1, '2023-01-01', '08:00', '09:00', 'Descrição da Agenda 1', 'A');
+INSERT INTO Agenda (id_especialidade, id_parceiro, data, hora_inicio, hora_fim, descricao, status) VALUES (2, 2, '2023-01-02', '09:00', '10:30', 'Descrição da Agenda 2', 'A');
+INSERT INTO Agenda (id_especialidade, id_parceiro, data, hora_inicio, hora_fim, descricao, status) VALUES (3, 3, '2023-01-03', '10:30', '12:30', 'Descrição da Agenda 3', 'A');
+INSERT INTO Agenda (id_especialidade, id_parceiro, data, hora_inicio, hora_fim, descricao, status) VALUES (4, 4, '2023-01-04', '13:00', '13:30', 'Descrição da Agenda 4', 'A');
+INSERT INTO Agenda (id_especialidade, id_parceiro, data, hora_inicio, hora_fim, descricao, status) VALUES (5, 5, '2023-01-05', '14:00', '14:45', 'Descrição da Agenda 5', 'A');
+
+-- Inserção na tabela Consulta
+INSERT INTO Consulta (id_cliente, id_agenda, id_parceiro, status, descricao, valor) VALUES (1, 1, 1, 'A', 'Descrição da Consulta 1', 100.0);
+INSERT INTO Consulta (id_cliente, id_agenda, id_parceiro, status, descricao, valor) VALUES (2, 2, 2, 'A', 'Descrição da Consulta 2', 150.0);
+INSERT INTO Consulta (id_cliente, id_agenda, id_parceiro, status, descricao, valor) VALUES (3, 3, 3, 'A', 'Descrição da Consulta 3', 200.0);
+INSERT INTO Consulta (id_cliente, id_agenda, id_parceiro, status, descricao, valor) VALUES (4, 4, 4, 'A', 'Descrição da Consulta 4', 50.0);
+INSERT INTO Consulta (id_cliente, id_agenda, id_parceiro, status, descricao, valor) VALUES (5, 5, 5, 'A', 'Descrição da Consulta 5', 75.0);
+
+-- Inserção na tabela Chamado
+INSERT INTO Chamado (id_consulta, categoria, titulo, descricao, status) VALUES (1, 'A', 'Chamado 1', 'Descrição do Chamado 1', 'A');
+INSERT INTO Chamado (id_consulta, categoria, titulo, descricao, status) VALUES (2, 'B', 'Chamado 2', 'Descrição do Chamado 2', 'A');
+INSERT INTO Chamado (id_consulta, categoria, titulo, descricao, status) VALUES (3, 'C', 'Chamado 3', 'Descrição do Chamado 3', 'A');
+INSERT INTO Chamado (id_consulta, categoria, titulo, descricao, status) VALUES (4, 'D', 'Chamado 4', 'Descrição do Chamado 4', 'A');
+INSERT INTO Chamado (id_consulta, categoria, titulo, descricao, status) VALUES (5, 'E', 'Chamado 5', 'Descrição do Chamado 5', 'A');
