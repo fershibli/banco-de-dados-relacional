@@ -172,3 +172,90 @@ INSERT INTO Chamado (id_consulta, categoria, titulo, descricao, status) VALUES (
 INSERT INTO Chamado (id_consulta, categoria, titulo, descricao, status) VALUES (3, 'C', 'Chamado 3', 'Descrição do Chamado 3', 'A');
 INSERT INTO Chamado (id_consulta, categoria, titulo, descricao, status) VALUES (4, 'D', 'Chamado 4', 'Descrição do Chamado 4', 'A');
 INSERT INTO Chamado (id_consulta, categoria, titulo, descricao, status) VALUES (5, 'E', 'Chamado 5', 'Descrição do Chamado 5', 'A');
+
+-- Consultas
+
+-- Consulta para obter informações de clientes e seus respectivos usuários
+
+SELECT 
+    c.id_cliente, 
+    u.nome, 
+    u.email, 
+    u.telefone, 
+    c.cep, 
+    c.logradouro, 
+    c.numero, 
+    c.complemento, 
+    c.cidade, 
+    c.estado, 
+    c.cpf
+FROM 
+    Cliente c
+JOIN 
+    Usuario u 
+ON 
+    c.id_usuario = u.id_usuario;
+
+-- Consulta para obter informações de parceiros e seus respectivos usuários
+
+SELECT 
+    p.id_parceiro, 
+    u.nome, 
+    u.email, 
+    u.telefone, 
+    p.cnpj, 
+    p.cpf, 
+    p.cep, 
+    p.logradouro, 
+    p.numero, 
+    p.complemento, 
+    p.cidade, 
+    p.estado
+FROM
+    Parceiro p
+JOIN
+    Usuario u
+ON
+    p.id_usuario = u.id_usuario;
+
+-- Consulta para obter detalhes das consultas, incluindo informações do cliente, parceiro e agenda
+
+SELECT 
+    con.id_consulta, 
+    con.status AS status_consulta, 
+    con.descricao AS descricao_consulta, 
+    con.valor AS valor_consulta, 
+    cli.cpf AS cpf_cliente, 
+    ucli.nome AS nome_cliente, 
+    par.cnpj AS cnpj_parceiro, 
+    upar.nome AS nome_parceiro, 
+    age.data AS data_agenda, 
+    age.hora_inicio AS hora_inicio_agenda, 
+    age.hora_fim AS hora_fim_agenda 
+FROM 
+    Consulta con
+JOIN 
+    Cliente cli ON con.id_cliente = cli.id_cliente
+JOIN 
+    Usuario ucli ON cli.id_usuario = ucli.id_usuario
+JOIN 
+    Parceiro par ON con.id_parceiro = par.id_parceiro
+JOIN 
+    Usuario upar ON par.id_usuario = upar.id_usuario
+JOIN 
+    Agenda age ON con.id_agenda = age.id_agenda;
+
+-- Consulta para obter informações das especialidades e suas respectivas categorias
+
+SELECT 
+    e.id_especialidade, 
+    e.nome AS nome_especialidade, 
+    e.minutos, 
+    e.valor, 
+    e.descricao AS descricao_especialidade, 
+    c.nome AS nome_categoria, 
+    c.descricao AS descricao_categoria 
+FROM 
+    Especialidade e
+JOIN 
+    Categoria c ON e.id_categoria = c.id_categoria;
