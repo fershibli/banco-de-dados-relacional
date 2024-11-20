@@ -15,7 +15,7 @@ CREATE TABLE Cliente
 (
     id_cliente NUMERIC(18,0) IDENTITY(1,1) PRIMARY KEY NOT NULL,
     id_usuario NUMERIC(18,0) NOT NULL,
-    cep VARCHAR(8) NOT NULL,
+    cep VARCHAR(9) NOT NULL,
     logradouro VARCHAR(50) NOT NULL,
     numero VARCHAR(10) NOT NULL,
     complemento VARCHAR(50) NULL,
