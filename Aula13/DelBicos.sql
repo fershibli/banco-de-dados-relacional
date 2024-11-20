@@ -7,7 +7,7 @@ CREATE TABLE Usuario
     id_usuario NUMERIC(18,0) IDENTITY(1,1) PRIMARY KEY NOT NULL,
     nome VARCHAR(50) NOT NULL,
     email VARCHAR(30) NOT NULL,
-    telefone VARCHAR(15) NULL,
+    telefone VARCHAR(18) NULL,
     senha VARCHAR(40) NOT NULL --SHA1
 );
 
