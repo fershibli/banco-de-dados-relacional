@@ -259,3 +259,24 @@ FROM
     Especialidade e
 JOIN 
     Categoria c ON e.id_categoria = c.id_categoria;
+
+--Consulta para obter detalhes dos chamados, incluindo informações da consulta e do cliente
+
+SELECT 
+    ch.id_chamado, 
+    ch.categoria AS categoria_chamado, 
+    ch.titulo AS titulo_chamado, 
+    ch.descricao AS descricao_chamado, 
+    ch.status AS status_chamado, 
+    con.id_consulta, 
+    con.descricao AS descricao_consulta, 
+    cli.cpf AS cpf_cliente, 
+    ucli.nome AS nome_cliente 
+FROM 
+    Chamado ch
+JOIN 
+    Consulta con ON ch.id_consulta = con.id_consulta
+JOIN 
+    Cliente cli ON con.id_cliente = cli.id_cliente
+JOIN 
+    Usuario ucli ON cli.id_usuario = ucli.id_usuario;
